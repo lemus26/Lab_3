@@ -32,6 +32,26 @@ estadisticas_vehiculos = vehiculos_df.describe()
 st.write("Estadísticas de variables numéricas:")
 st.write(estadisticas_vehiculos)
 
+#parte 2 vehiculos
+#Ahora colocare la filtración para los vehiculos
+st.subheader("Filtros - Vehículos")
+
+# Filtro por año
+anio_limite = st.number_input("Mostrar vehículos con año menor a:", min_value=2000, max_value=2025)
+
+vehiculos_filtrados_anio = vehiculos_df[vehiculos_df["Model_Year"] < anio_limite]
+
+st.write("Resultados por año:")
+st.write(vehiculos_filtrados_anio)
+
+# Filtro por precio
+precio_limite = st.number_input("Mostrar vehículos con precio menor a:")
+
+vehiculos_filtrados_precio = vehiculos_df[vehiculos_df["Base_MSRP"] < precio_limite]
+
+st.write("Resultados por precio:")
+st.write(vehiculos_filtrados_precio)
+
 # PROGRA_gimnasio
 st.header("Datos de Gimnasio")
 
