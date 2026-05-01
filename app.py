@@ -78,3 +78,23 @@ st.write(primeras_filas_gimnasio)
 estadisticas_gimnasio = gimnasio_df.describe()
 st.write("Estadísticas de variables numéricas:")
 st.write(estadisticas_gimnasio)
+
+#parte 2 gimnasio
+#Ahora colocare la filtración para el gimnasio
+st.subheader("Filtros - Gimnasio")
+
+# Filtro calorías
+calorias_minimas = st.number_input("Mostrar sesiones con calorías mayores o iguales a:")
+
+gimnasio_filtrado_calorias = gimnasio_df[gimnasio_df["Calories_Burned"] >= calorias_minimas]
+
+st.write("Resultados por calorías:")
+st.write(gimnasio_filtrado_calorias)
+
+# Filtro grasa
+grasa_maxima = st.number_input("Mostrar sesiones con grasa menor o igual a:")
+
+gimnasio_filtrado_grasa = gimnasio_df[gimnasio_df["Fat_Percentage"] <= grasa_maxima]
+
+st.write("Resultados por grasa corporal:")
+st.write(gimnasio_filtrado_grasa)
