@@ -1,4 +1,6 @@
 # PROGRA_steam
+import streamlit as st 
+import pandas as pd
 st.header("Datos de Videojuegos (Steam)")
 
 # Cargar datos
