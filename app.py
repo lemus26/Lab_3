@@ -31,3 +31,30 @@ st.write(primeras_filas_vehiculos)
 estadisticas_vehiculos = vehiculos_df.describe()
 st.write("Estadísticas de variables numéricas:")
 st.write(estadisticas_vehiculos)
+
+# PROGRA_gimnasio
+st.header("Datos de Gimnasio")
+
+# Cargar datos
+gimnasio_df = pd.read_csv("GIMNASIO.csv")
+
+st.subheader("Exploración Inicial")
+
+# Tamaño del dataset
+filas_columnas_gimnasio = gimnasio_df.shape
+st.write("Número de filas y columnas:", filas_columnas_gimnasio)
+
+# Nombres de columnas
+columnas_gimnasio = gimnasio_df.columns
+st.write("Nombres de columnas:")
+st.write(columnas_gimnasio)
+
+# Primeras 6 filas
+primeras_filas_gimnasio = gimnasio_df.head(6)
+st.write("Primeras 6 filas:")
+st.write(primeras_filas_gimnasio)
+
+# Estadísticas generales
+estadisticas_gimnasio = gimnasio_df.describe()
+st.write("Estadísticas de variables numéricas:")
+st.write(estadisticas_gimnasio)
