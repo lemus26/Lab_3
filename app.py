@@ -91,7 +91,50 @@ estadisticas_gimnasio = gimnasio_df.describe()
 st.write("Estadísticas de variables numéricas:")
 st.write(estadisticas_gimnasio)
 
+#analisis y exploracion de vehiculos
+st.subheader("Exploración Avanzada - Vehículos")
 
+#variable de categorías
+def clasificar_rango(rango):
+    if rango < 100:
+        return "Bajo"
+    elif rango <= 250:
+        return "Medio"
+    else:
+        return "Alto"
+
+vehiculos_df["RangoCategoria"] = vehiculos_df["Electric_Range"].apply(clasificar_rango)
+
+st.write("Dataset con nueva categoría:")
+st.dataframe(vehiculos_df.head())
+
+# conteo por categoría
+conteo_rango = vehiculos_df["RangoCategoria"].value_counts()
+
+st.write("Cantidad de vehículos por categoría:")
+st.write(conteo_rango)
+
+# graficos
+import matplotlib.pyplot as plt
+
+fig1, ax1 = plt.subplots()
+conteo_rango.plot(kind="bar", ax=ax1)
+
+ax1.set_title("Vehículos por rango eléctrico")
+ax1.set_xlabel("Categoría")
+ax1.set_ylabel("Cantidad")
+
+st.pyplot(fig1)
+
+# los analisis por grupo
+analisis_vehiculos = vehiculos_df.groupby("RangoCategoria").agg({
+    "Base_MSRP": "mean",
+    "Model_Year": "mean",
+    "Electric_Range": "std"
+})
+
+st.write("Análisis agrupado:")
+st.write(analisis_vehiculos)
 
 #parte 2 gimnasio
 #Ahora colocare la filtración para el gimnasio
