@@ -218,3 +218,20 @@ if st.button("Guardar archivos CSV"):
     gimnasio_df.to_csv("GymExerciseTracking_Actualizado.csv", index=False)
 
     st.success("Archivos guardados correctamente")
+
+#Resumen de los resultados con ayuda de Chat-Gpt 
+st.subheader("Resumen datos")
+
+# VEHICULOS
+corr1 = vehiculos_df["Electric_Range"].corr(vehiculos_df["Model_Year"])
+st.write("Rango vs Año:", corr1)
+
+corr2 = vehiculos_df["Electric_Range"].corr(vehiculos_df["Base_MSRP"])
+st.write("Rango vs Precio:", corr2)
+
+# GIMNASIO
+corr3 = gimnasio_df["Calories_Burned"].corr(gimnasio_df["Session_Duration"])
+st.write("Calorías vs Duración:", corr3)
+
+corr4 = gimnasio_df["Fat_Percentage"].corr(gimnasio_df["Experience_Level"])
+st.write("Grasa vs Experiencia:", corr4)
