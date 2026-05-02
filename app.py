@@ -171,9 +171,7 @@ st.dataframe(gimnasio_filtrado_grasa)
 
 st.subheader("Exploración Avanzada - Gimnasio")
 
-# -------------------------
-# Nueva variable categórica
-# -------------------------
+# agregamos una variable para las categorias
 def clasificar_frecuencia(freq):
     if freq < 3:
         return "Baja"
@@ -187,17 +185,13 @@ gimnasio_df["NivelFrecuencia"] = gimnasio_df["Workout_Frequency"].apply(clasific
 st.write("Dataset con nueva categoría:")
 st.dataframe(gimnasio_df.head())
 
-# -------------------------
-# Conteo por categoría
-# -------------------------
+# hacemos el conteo por categoria 
 conteo_frecuencia = gimnasio_df["NivelFrecuencia"].value_counts()
 
 st.write("Cantidad de usuarios por frecuencia:")
 st.write(conteo_frecuencia)
 
-# -------------------------
-# Gráfico de barras
-# -------------------------
+# grafcos
 fig2, ax2 = plt.subplots()
 conteo_frecuencia.plot(kind="bar", ax=ax2)
 
@@ -207,9 +201,7 @@ ax2.set_ylabel("Cantidad")
 
 st.pyplot(fig2)
 
-# -------------------------
-# Análisis agrupado
-# -------------------------
+# el analisis por grupos
 analisis_gimnasio = gimnasio_df.groupby("NivelFrecuencia").agg({
     "Session_Duration": "mean",
     "Experience_Level": "mean",
