@@ -166,3 +166,55 @@ gimnasio_filtrado_grasa = gimnasio_df[gimnasio_df["Fat_Percentage"] <= grasa_max
 
 st.write("Resultados por grasa corporal:")
 st.dataframe(gimnasio_filtrado_grasa)
+
+#analisis y exploracion de gimnasio
+
+st.subheader("Exploración Avanzada - Gimnasio")
+
+# -------------------------
+# Nueva variable categórica
+# -------------------------
+def clasificar_frecuencia(freq):
+    if freq < 3:
+        return "Baja"
+    elif freq <= 5:
+        return "Moderada"
+    else:
+        return "Alta"
+
+gimnasio_df["NivelFrecuencia"] = gimnasio_df["Workout_Frequency"].apply(clasificar_frecuencia)
+
+st.write("Dataset con nueva categoría:")
+st.dataframe(gimnasio_df.head())
+
+# -------------------------
+# Conteo por categoría
+# -------------------------
+conteo_frecuencia = gimnasio_df["NivelFrecuencia"].value_counts()
+
+st.write("Cantidad de usuarios por frecuencia:")
+st.write(conteo_frecuencia)
+
+# -------------------------
+# Gráfico de barras
+# -------------------------
+fig2, ax2 = plt.subplots()
+conteo_frecuencia.plot(kind="bar", ax=ax2)
+
+ax2.set_title("Frecuencia de entrenamiento")
+ax2.set_xlabel("Nivel")
+ax2.set_ylabel("Cantidad")
+
+st.pyplot(fig2)
+
+# -------------------------
+# Análisis agrupado
+# -------------------------
+analisis_gimnasio = gimnasio_df.groupby("NivelFrecuencia").agg({
+    "Session_Duration": "mean",
+    "Experience_Level": "mean",
+    "BMI": "std"
+})
+
+st.write("Análisis agrupado:")
+st.write(analisis_gimnasio)
