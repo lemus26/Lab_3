@@ -210,3 +210,11 @@ analisis_gimnasio = gimnasio_df.groupby("NivelFrecuencia").agg({
 
 st.write("Análisis agrupado:")
 st.write(analisis_gimnasio)
+st.subheader("Guardar resultados")
+
+if st.button("Guardar archivos CSV"):
+
+    vehiculos_df.to_csv("Electric_Vehicle_Population_Actualizado.csv", index=False)
+    gimnasio_df.to_csv("GymExerciseTracking_Actualizado.csv", index=False)
+
+    st.success("Archivos guardados correctamente")
