@@ -37,46 +37,32 @@ st.write(estadisticas_vehiculos)
 st.subheader("Filtros - Vehículos")
 
 # Filtro por año
-anio_limite = st.number_input("Mostrar vehículos con año menor a:", min_value=2000, max_value=2025)
+anio_limite = st.number_input(
+    "Mostrar vehículos con año menor a:",
+    min_value=2000,
+    max_value=2025,
+    value=2020,
+    key="vehiculos_anio"
+)
 
 vehiculos_filtrados_anio = vehiculos_df[vehiculos_df["Model_Year"] < anio_limite]
 
 st.write("Resultados por año:")
-st.write(vehiculos_filtrados_anio)
+st.dataframe(vehiculos_filtrados_anio)
 
 # Filtro por precio
-precio_limite = st.number_input("Mostrar vehículos con precio menor a:")
+precio_limite = st.number_input(
+    "Mostrar vehículos con precio menor a:",
+    min_value=0.0,
+    max_value=845000.0,
+    value=50000.0,
+    key="vehiculos_precio"
+)
 
 vehiculos_filtrados_precio = vehiculos_df[vehiculos_df["Base_MSRP"] < precio_limite]
 
 st.write("Resultados por precio:")
-st.write(vehiculos_filtrados_precio)
-
-#Ingreso de nuevos datos de vehiculos
-st.subheader("Agregar nuevo vehículo")
-
-# Inputs del usuario
-nuevo_año = st.number_input("Año del modelo", min_value=2000, max_value=2025, key="anio")
-nuevo_precio = st.number_input("Precio base (Base_MSRP)", min_value=0.0, key="precio")
-nuevo_rango = st.number_input("Rango eléctrico (Electric_Range)", min_value=0.0, key="rango")
-
-# Botón para agregar
-if st.button("Agregar vehículo"):
-
-    nuevo_registro = {
-        "Model_Year": nuevo_año,
-        "Base_MSRP": nuevo_precio,
-        "Electric_Range": nuevo_rango
-    }
-
-    nuevo_df = pd.DataFrame([nuevo_registro])
-
-    vehiculos_df = pd.concat([vehiculos_df, nuevo_df], ignore_index=True)
-
-    st.success("Vehículo agregado correctamente")
-
-    st.write("Nuevo dataset actualizado:")
-    st.write(vehiculos_df.tail())
+st.dataframe(vehiculos_filtrados_precio)
 
 # PROGRA_gimnasio
 st.header("Datos de Gimnasio")
@@ -105,22 +91,35 @@ estadisticas_gimnasio = gimnasio_df.describe()
 st.write("Estadísticas de variables numéricas:")
 st.write(estadisticas_gimnasio)
 
+
+
 #parte 2 gimnasio
 #Ahora colocare la filtración para el gimnasio
 st.subheader("Filtros - Gimnasio")
 
 # Filtro calorías
-calorias_minimas = st.number_input("Mostrar sesiones con calorías mayores o iguales a:")
+calorias_minimas = st.number_input(
+    "Mostrar sesiones con calorías mayores o iguales a:",
+    min_value=0.0,
+    value=200.0,
+    key="gym_calorias"
+)
 
 gimnasio_filtrado_calorias = gimnasio_df[gimnasio_df["Calories_Burned"] >= calorias_minimas]
 
 st.write("Resultados por calorías:")
-st.write(gimnasio_filtrado_calorias)
+st.dataframe(gimnasio_filtrado_calorias)
 
 # Filtro grasa
-grasa_maxima = st.number_input("Mostrar sesiones con grasa menor o igual a:")
+grasa_maxima = st.number_input(
+    "Mostrar sesiones con grasa menor o igual a:",
+    min_value=0.0,
+    max_value=100.0,
+    value=25.0,
+    key="gym_grasa"
+)
 
 gimnasio_filtrado_grasa = gimnasio_df[gimnasio_df["Fat_Percentage"] <= grasa_maxima]
 
 st.write("Resultados por grasa corporal:")
-st.write(gimnasio_filtrado_grasa)
+st.dataframe(gimnasio_filtrado_grasa)
