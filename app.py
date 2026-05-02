@@ -180,7 +180,7 @@ def clasificar_frecuencia(freq):
     else:
         return "Alta"
 
-gimnasio_df["NivelFrecuencia"] = gimnasio_df["Workout_Frequency"].apply(clasificar_frecuencia)
+gimnasio_df["NivelFrecuencia"] = gimnasio_df["Workout_Frequency (days/week)"].apply(clasificar_frecuencia)
 
 st.write("Dataset con nueva categoría:")
 st.dataframe(gimnasio_df.head())
