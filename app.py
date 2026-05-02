@@ -52,6 +52,32 @@ vehiculos_filtrados_precio = vehiculos_df[vehiculos_df["Base_MSRP"] < precio_lim
 st.write("Resultados por precio:")
 st.write(vehiculos_filtrados_precio)
 
+#Ingreso de nuevos datos de vehiculos
+st.subheader("Agregar nuevo vehículo")
+
+# Inputs del usuario
+nuevo_año = st.number_input("Año del modelo", min_value=2000, max_value=2025, key="anio")
+nuevo_precio = st.number_input("Precio base (Base_MSRP)", min_value=0.0, key="precio")
+nuevo_rango = st.number_input("Rango eléctrico (Electric_Range)", min_value=0.0, key="rango")
+
+# Botón para agregar
+if st.button("Agregar vehículo"):
+
+    nuevo_registro = {
+        "Model_Year": nuevo_año,
+        "Base_MSRP": nuevo_precio,
+        "Electric_Range": nuevo_rango
+    }
+
+    nuevo_df = pd.DataFrame([nuevo_registro])
+
+    vehiculos_df = pd.concat([vehiculos_df, nuevo_df], ignore_index=True)
+
+    st.success("Vehículo agregado correctamente")
+
+    st.write("Nuevo dataset actualizado:")
+    st.write(vehiculos_df.tail())
+
 # PROGRA_gimnasio
 st.header("Datos de Gimnasio")
 
