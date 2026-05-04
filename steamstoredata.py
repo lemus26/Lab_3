@@ -5,7 +5,7 @@ import pandas as pd
 st.header("Datos de Videojuegos (Steam)")
 
 # Cargar datos
-steam_df = pd.read_csv("steam_store_data_2024.csv")
+steam_df = pd.read_csv("steam_store_data_2024 (1).csv")
 
 st.subheader("Exploración Inicial")
 
