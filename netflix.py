@@ -5,7 +5,7 @@ import pandas as pd
 st.header("Datos de Netflix")
 
 # Cargar datos
-netflix_df = pd.read_csv("netflix_titles.csv")
+netflix_df = pd.read_csv("netflix_titles (1).csv")
 
 st.subheader("Exploración Inicial")
 
