@@ -328,6 +328,6 @@ st.write(analisis_netflix)
 
 if st.button("Guardar Netflix", key="guardar_netflix"):
 
-    netflix_df.to_csv("NetflixTracking_Actualizado.csv", index=False)
+    netflix_df.to_csv("netflix_titles_Actualizado.csv", index=False)
 
     st.success("Archivos guardados correctamente")
